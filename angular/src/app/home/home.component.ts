@@ -5,6 +5,8 @@ import { PersonData } from '../models/person-data';
 import { GhostService } from '../services/ghost.service';
 import { BusyIndicatorDirective } from '../directives/busy-indicator.directive';
 import { BehaviorSubject } from 'rxjs';
+import { DictionaryItem } from '../models/dictionary-item';
+import { resetFakeAsyncZone } from '@angular/core/testing';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,7 @@ export class HomeComponent implements OnInit {
 
   personDataForm: FormGroup;
   personData: PersonData;
+  persons: DictionaryItem[];
 
   loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -27,12 +30,18 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.personDataForm = this.formBuilder.group({
       firstName: '',
-      lastName: ''
+      lastName: '',
+      personId: ''
+    });
+
+    this.dataService.getData().subscribe(result => {
+      this.persons = result;
     });
   }
 
   onFormSubmit(personData: PersonData) {
     this.personData = Object.assign(personData);
+    console.log(personData);
     this.loadingSubject.next(true);
     this.dataService.postData(personData).subscribe(result => {
       setTimeout(() => {

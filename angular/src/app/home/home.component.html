@@ -17,6 +17,10 @@
             <label for="lastName">Last name:</label>
             <input type="text" class="form-control" id="lastName" formControlName="lastName" />
           </div>
+          <div class="form-group">
+            <label for="personId">Person:</label>
+            <custom-drop-down [items]="persons" id="personId" formControlName="personId"></custom-drop-down>
+          </div>
 
         </div>
         <div class="card-footer">

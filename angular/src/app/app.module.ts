@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BusyIndicatorDirective } from './directives/busy-indicator.directive';
+import { CustomDropDownComponent } from './controls/custom-drop-down/custom-drop-down.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BusyIndicatorDirective } from './directives/busy-indicator.directive';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    BusyIndicatorDirective
+    BusyIndicatorDirective,
+    CustomDropDownComponent
   ],
   imports: [
     BrowserModule,
