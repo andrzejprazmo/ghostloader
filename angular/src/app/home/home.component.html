@@ -33,4 +33,33 @@
       </form>
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <h3>Tree</h3>
+      <ul>
+        <ng-template #recursiveList let-list>
+          <li *ngFor="let item of list">
+            {{item.name}}
+            <ul *ngIf="item.children.length > 0">
+              <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+            </ul>
+          </li>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: myModel }"></ng-container>
+      </ul>
+      <hr/>
+      <h3> Flatten tree</h3>
+      <ul>
+        <ng-template #recursiveFlattenList let-list>
+          <li *ngFor="let item of list">
+            {{item.name}}
+            <ul *ngIf="item.children.length > 0">
+              <ng-container *ngTemplateOutlet="recursiveFlattenList; context:{ $implicit: item.children }"></ng-container>
+            </ul>
+          </li>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="recursiveFlattenList; context:{ $implicit: myFlattenModel }"></ng-container>
+      </ul>
+    </div>
+  </div>
 </div>
